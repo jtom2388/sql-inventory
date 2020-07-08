@@ -17,3 +17,13 @@ KEY psql methods
 
 3) SUM
     a) Used in conjunction with CASE to calculate total number of units based on conditions
+
+4) WHERE
+    a) Clause that filters results based on specified conditions
+
+4) AND
+    a) Tests multiple conditions where all MUST be true in order for records to be selected
+
+5) BETWEEN
+    a) Return records that fall within range of 2 specified values (inclusive)
+
