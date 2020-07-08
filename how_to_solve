@@ -3,3 +3,17 @@
 3) Compare available inventory beyond specified time range to total units shipped overall
     a) If available inventory is greater than total units shipped, then number of available units in that range remain the same
     b) Otherwise, deduct the difference (shipped units - available units beyond range) from available inventory for specified range
+    c) If difference is greater than number of available units, then output 0
+
+KEY psql methods
+
+1) CASE...WHEN...THEN
+    a) Divides output into separate categories based on conditions
+    b) WHEN operates as IF and ELSE IF statements
+
+2) DATE_PART('day', NOW() - #date units arrive in warehouse)
+    a) NOW() provides current date
+    b) Finds difference in days (age) between when units arrived, and the current date
+
+3) SUM
+    a) Used in conjunction with CASE to calculate total number of units based on conditions
