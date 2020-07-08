@@ -1,0 +1,5 @@
+1) Calculate total number of units SHIPPED overall
+2) For each range of time, calculate the total available inventory IN WAREHOUSE beyond that range
+3) Compare available inventory beyond specified time range to total units shipped overall
+    a) If available inventory is greater than total units shipped, then number of available units in that range remain the same
+    b) Otherwise, deduct the difference (shipped units - available units beyond range) from available inventory for specified range
