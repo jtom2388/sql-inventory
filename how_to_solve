@@ -13,7 +13,7 @@ KEY psql methods
 
 2) DATE_PART('day', NOW() - #date units arrive in warehouse)
     a) NOW() provides current date
-    b) Finds difference in days (age) between when units arrived, and the current date
+    b) Finds difference in days (inventory age) between when units arrived, and the current date
 
 3) SUM
     a) Used in conjunction with CASE to calculate total number of units based on conditions
