@@ -4,6 +4,7 @@
     a) If available inventory is greater than total units shipped, then number of available units in that range remain the same
     b) Otherwise, deduct the difference (shipped units - available units beyond range) from available inventory for specified range
     c) If difference is greater than number of available units, then output 0
+4) For step 3, use nested queries and CASE-WHEN functions
 
 KEY psql methods
 
