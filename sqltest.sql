@@ -1,4 +1,4 @@
-SELECT 
+SELECT
     SUM(
         CASE
             WHEN eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
@@ -9,14 +9,16 @@ SELECT
                     SUM(onhandqtydelta)
                 FROM
                     deliverr
-                WHERE eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
-                AND DATE_PART('day', NOW() - created) > 90
+                WHERE 
+                    eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
+                    AND DATE_PART('day', NOW() - created) > 90
             ) > (
                 SELECT
                     SUM(ABS(onhandqtydelta))
-                FROM
+                FROM 
                     deliverr
-                WHERE eventtype = 'SHIPPED'
+                WHERE 
+                    eventtype = 'SHIPPED'
             ) THEN onhandqtydelta
 
             WHEN eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
@@ -27,31 +29,36 @@ SELECT
                     SUM(onhandqtydelta)
                 FROM
                     deliverr
-                WHERE eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
-                AND DATE_PART('day', NOW() - created) > 90
+                WHERE 
+                    eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
+                    AND DATE_PART('day', NOW() - created) > 90
             ) < (
                 SELECT
                     SUM(ABS(onhandqtydelta))
-                FROM
+                FROM 
                     deliverr
-                WHERE eventtype = 'SHIPPED'
+                WHERE 
+                    eventtype = 'SHIPPED'
             ) THEN onhandqtydelta - (
                 (
                     SELECT
                         SUM(ABS(onhandqtydelta))
-                    FROM
+                    FROM 
                         deliverr
-                    WHERE eventtype = 'SHIPPED'
+                    WHERE
+                        eventtype = 'SHIPPED'
                 ) - (
                     SELECT
                         SUM(onhandqtydelta)
                     FROM
                         deliverr
-                    WHERE eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
-                    AND DATE_PART('day', NOW() - created) > 90
+                    WHERE
+                        eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
+                        AND DATE_PART('day', NOW() - created) > 90
                 )
             )
             ELSE 0
+            
         END
     ) AS "0-90 days old",
     SUM(
@@ -64,14 +71,16 @@ SELECT
                     SUM(onhandqtydelta)
                 FROM
                     deliverr
-                WHERE eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
-                AND DATE_PART('day', NOW() - created) > 180
+                WHERE 
+                    eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
+                    AND DATE_PART('day', NOW() - created) > 180
             ) > (
                 SELECT
                     SUM(ABS(onhandqtydelta))
-                FROM
+                FROM 
                     deliverr
-                WHERE eventtype = 'SHIPPED'
+                WHERE 
+                    eventtype = 'SHIPPED'
             ) THEN onhandqtydelta
 
             WHEN eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
@@ -82,31 +91,36 @@ SELECT
                     SUM(onhandqtydelta)
                 FROM
                     deliverr
-                WHERE eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
-                AND DATE_PART('day', NOW() - created) > 180
+                WHERE 
+                    eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
+                    AND DATE_PART('day', NOW() - created) > 180
             ) < (
                 SELECT
                     SUM(ABS(onhandqtydelta))
-                FROM
+                FROM 
                     deliverr
-                WHERE eventtype = 'SHIPPED'
+                WHERE 
+                    eventtype = 'SHIPPED'
             ) THEN onhandqtydelta - (
                 (
                     SELECT
                         SUM(ABS(onhandqtydelta))
-                    FROM
+                    FROM 
                         deliverr
-                    WHERE eventtype = 'SHIPPED'
+                    WHERE
+                        eventtype = 'SHIPPED'
                 ) - (
                     SELECT
                         SUM(onhandqtydelta)
                     FROM
                         deliverr
-                    WHERE eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
-                    AND DATE_PART('day', NOW() - created) > 180
+                    WHERE
+                        eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
+                        AND DATE_PART('day', NOW() - created) > 180
                 )
             )
             ELSE 0
+            
         END
     ) AS "91-180 days old",
     SUM(
@@ -119,14 +133,16 @@ SELECT
                     SUM(onhandqtydelta)
                 FROM
                     deliverr
-                WHERE eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
-                AND DATE_PART('day', NOW() - created) > 270
+                WHERE 
+                    eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
+                    AND DATE_PART('day', NOW() - created) > 270
             ) > (
                 SELECT
                     SUM(ABS(onhandqtydelta))
-                FROM
+                FROM 
                     deliverr
-                WHERE eventtype = 'SHIPPED'
+                WHERE 
+                    eventtype = 'SHIPPED'
             ) THEN onhandqtydelta
 
             WHEN eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
@@ -137,51 +153,58 @@ SELECT
                     SUM(onhandqtydelta)
                 FROM
                     deliverr
-                WHERE eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
-                AND DATE_PART('day', NOW() - created) > 270
+                WHERE 
+                    eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
+                    AND DATE_PART('day', NOW() - created) > 270
             ) < (
                 SELECT
                     SUM(ABS(onhandqtydelta))
-                FROM
+                FROM 
                     deliverr
-                WHERE eventtype = 'SHIPPED'
+                WHERE 
+                    eventtype = 'SHIPPED'
             ) THEN onhandqtydelta - (
                 (
                     SELECT
                         SUM(ABS(onhandqtydelta))
-                    FROM
+                    FROM 
                         deliverr
-                    WHERE eventtype = 'SHIPPED'
+                    WHERE
+                        eventtype = 'SHIPPED'
                 ) - (
                     SELECT
                         SUM(onhandqtydelta)
                     FROM
                         deliverr
-                    WHERE eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
-                    AND DATE_PART('day', NOW() - created) > 270
+                    WHERE
+                        eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
+                        AND DATE_PART('day', NOW() - created) > 270
                 )
             )
             ELSE 0
+            
         END
     ) AS "181-270 days old",
     SUM(
         CASE
             WHEN eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
-            AND DATE_PART('day', NOW()-created) BETWEEN 271
+            AND DATE_PART('day', NOW() - created) BETWEEN 271
             AND 365
             AND (
                 SELECT 
                     SUM(onhandqtydelta)
                 FROM
                     deliverr
-                WHERE eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
-                AND DATE_PART('day', NOW() - created) > 365
+                WHERE 
+                    eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
+                    AND DATE_PART('day', NOW() - created) > 365
             ) > (
                 SELECT
                     SUM(ABS(onhandqtydelta))
-                FROM
+                FROM 
                     deliverr
-                WHERE eventtype = 'SHIPPED'
+                WHERE 
+                    eventtype = 'SHIPPED'
             ) THEN onhandqtydelta
 
             WHEN eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
@@ -192,33 +215,38 @@ SELECT
                     SUM(onhandqtydelta)
                 FROM
                     deliverr
-                WHERE eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
-                AND DATE_PART('day', NOW() - created) > 365
+                WHERE 
+                    eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
+                    AND DATE_PART('day', NOW() - created) > 365
             ) < (
                 SELECT
                     SUM(ABS(onhandqtydelta))
-                FROM
+                FROM 
                     deliverr
-                WHERE eventtype = 'SHIPPED'
+                WHERE 
+                    eventtype = 'SHIPPED'
             ) THEN onhandqtydelta - (
                 (
                     SELECT
                         SUM(ABS(onhandqtydelta))
-                    FROM
+                    FROM 
                         deliverr
-                    WHERE eventtype = 'SHIPPED'
+                    WHERE
+                        eventtype = 'SHIPPED'
                 ) - (
                     SELECT
                         SUM(onhandqtydelta)
                     FROM
                         deliverr
-                    WHERE eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
-                    AND DATE_PART('day', NOW() - created) > 365
+                    WHERE
+                        eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
+                        AND DATE_PART('day', NOW() - created) > 365
                 )
             )
             ELSE 0
+            
         END
     ) AS "271-365 days old"
-    
-FROM 
+
+FROM
     deliverr;
