@@ -4,14 +4,14 @@ SELECT
             WHEN eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
             AND DATE_PART('day', NOW() - created) BETWEEN 0
             AND 90
-            AND (
+            AND(
                 SELECT
                     SUM(onhandqtydelta)
                 FROM
                     deliverr
                 WHERE
                     eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
-                    AND DATE_PART('day', NOW() - created) > 90
+                AND DATE_PART('day', NOW() - created) > 90
             ) > (
                 SELECT
                     SUM(ABS(onhandqtydelta))
@@ -23,14 +23,14 @@ SELECT
             WHEN eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
             AND DATE_PART('day', NOW() - created) BETWEEN 0
             AND 90
-            AND (
+            AND(
                 SELECT
                     SUM(onhandqtydelta)
                 FROM
                     deliverr
                 WHERE
                     eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
-                    AND DATE_PART('day', NOW() - created) > 90
+                AND DATE_PART('day', NOW() - created) > 90
             ) < (
                 SELECT
                     SUM(ABS(onhandqtydelta))
@@ -53,7 +53,7 @@ SELECT
                         deliverr
                     WHERE
                         eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
-                        AND DATE_PART('day', NOW() - created) > 90
+                    AND DATE_PART('day', NOW() - created) > 90
                 )
             )
             ELSE 0
@@ -64,14 +64,14 @@ SELECT
             WHEN eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
             AND DATE_PART('day', NOW() - created) BETWEEN 91
             AND 180
-            AND (
+            AND(
                 SELECT
                     SUM(onhandqtydelta)
                 FROM
                     deliverr
                 WHERE
                     eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
-                    AND DATE_PART('day', NOW() - created) > 180
+                AND DATE_PART('day', NOW() - created) > 180
             ) > (
                 SELECT
                     SUM(ABS(onhandqtydelta))
@@ -83,14 +83,14 @@ SELECT
             WHEN eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
             AND DATE_PART('day', NOW() - created) BETWEEN 91
             AND 180
-            AND (
+            AND(
                 SELECT
                     SUM(onhandqtydelta)
                 FROM
                     deliverr
                 WHERE
                     eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
-                    AND DATE_PART('day', NOW() - created) > 180
+                AND DATE_PART('day', NOW() - created) > 180
             ) < (
                 SELECT
                     SUM(ABS(onhandqtydelta))
@@ -113,7 +113,7 @@ SELECT
                         deliverr
                     WHERE
                         eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
-                        AND DATE_PART('day', NOW() - created) > 180
+                    AND DATE_PART('day', NOW() - created) > 180
                 )
             )
             ELSE 0
@@ -124,14 +124,14 @@ SELECT
             WHEN eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
             AND DATE_PART('day', NOW() - created) BETWEEN 181
             AND 270
-            AND (
+            AND(
                 SELECT
                     SUM(onhandqtydelta)
                 FROM
                     deliverr
                 WHERE
                     eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
-                    AND DATE_PART('day', NOW() - created) > 270
+                AND DATE_PART('day', NOW() - created) > 270
             ) > (
                 SELECT
                     SUM(ABS(onhandqtydelta))
@@ -143,14 +143,14 @@ SELECT
             WHEN eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
             AND DATE_PART('day', NOW() - created) BETWEEN 181
             AND 270
-            AND (
+            AND(
                 SELECT
                     SUM(onhandqtydelta)
                 FROM
                     deliverr
                 WHERE
                     eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
-                    AND DATE_PART('day', NOW() - created) > 270
+                AND DATE_PART('day', NOW() - created) > 270
             ) < (
                 SELECT
                     SUM(ABS(onhandqtydelta))
@@ -173,7 +173,7 @@ SELECT
                         deliverr
                     WHERE
                         eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
-                        AND DATE_PART('day', NOW() - created) > 270
+                    AND DATE_PART('day', NOW() - created) > 270
                 )
             )
             ELSE 0
@@ -184,14 +184,14 @@ SELECT
             WHEN eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
             AND DATE_PART('day', NOW() - created) BETWEEN 271
             AND 365
-            AND (
+            AND(
                 SELECT
                     SUM(onhandqtydelta)
                 FROM
                     deliverr
                 WHERE
                     eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
-                    AND DATE_PART('day', NOW() - created) > 365
+                AND DATE_PART('day', NOW() - created) > 365
             ) > (
                 SELECT
                     SUM(ABS(onhandqtydelta))
@@ -203,14 +203,14 @@ SELECT
             WHEN eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
             AND DATE_PART('day', NOW() - created) BETWEEN 271
             AND 365
-            AND (
+            AND(
                 SELECT
                     SUM(onhandqtydelta)
                 FROM
                     deliverr
                 WHERE
                     eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
-                    AND DATE_PART('day', NOW() - created) > 365
+                AND DATE_PART('day', NOW() - created) > 365
             ) < (
                 SELECT
                     SUM(ABS(onhandqtydelta))
@@ -233,7 +233,7 @@ SELECT
                         deliverr
                     WHERE
                         eventtype = 'WAREHOUSE_POOL_INVENTORY_MOVEMENT'
-                        AND DATE_PART('day', NOW() - created) > 365
+                    AND DATE_PART('day', NOW() - created) > 365
                 )
             )
             ELSE 0
